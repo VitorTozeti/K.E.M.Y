@@ -1,0 +1,10 @@
+# Base (obrigatorio)
+requests
+
+# Recursos extras da v2 (opcionais, mas recomendados — cada um so e exigido quando
+# voce usa a ferramenta correspondente; sem eles a K.E.M.Y avisa "pip install ...").
+beautifulsoup4   # web_search / limpar HTML no fetch_url
+pypdf            # ler PDF (read_document)
+python-docx      # ler/editar Word .docx (read_document, edit_docx)
+openpyxl         # ler/editar Excel .xlsx (read_document, edit_excel)
+pyperclip        # area de transferencia (clipboard_read/write)
