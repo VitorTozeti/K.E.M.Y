@@ -23,7 +23,7 @@ for _stream in (sys.stdout, sys.stderr):
 # ---------------------------------------------------------------------------
 
 # Chave hardcoded a pedido do usuario (uso local rapido). Variaveis de ambiente tem prioridade.
-_HARDCODED_API_KEY = "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"
+_HARDCODED_API_KEY = "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"
 
 API_KEY = (
     os.environ.get("KEMY_API_KEY")

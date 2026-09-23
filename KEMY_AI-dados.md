@@ -2,7 +2,7 @@
 name: KEMY_AI-dados
 description: mapa de onde os dados do KEMY_AI vivem — pasta/código, motor Grok via OpenRouter (endpoint, modelo, parâmetros), as 4 ferramentas, variáveis de ambiente KEMY_*/GROK_* e o loop de turno
 tags: [projeto, proj/kemy-ai, dados, arquitetura, openrouter, python]
-updated: 2026-09-23 (v2: código modularizado em 4 arquivos; 20 ferramentas incl. web/documentos/e-mail/obsidian/multiagente; hub de dados ~/.kemy; modo auto/seguro; incidente de chave versionada corrigido)
+updated: 2026-09-23 (v2: código modularizado em 4 arquivos; 20 ferramentas incl. web/documentos/e-mail/obsidian/multiagente; hub de dados ~/.kemy; modo auto/seguro; incidente de chave versionada corrigido; chave antiga revogada→rotacionada por 401 "User not found")
 ---
 
 # KEMY_AI — Onde os dados vivem
@@ -71,6 +71,15 @@ Nota de dados/arquitetura do [[KEMY_AI]]. O que existe, onde mora e como se cone
   Fix bulletproof = **revogar/rotacionar a chave** em `openrouter.ai/settings/keys` (ela é de
   uso local e já vai embalada no zip, então rotacionar é barato). Alternativa: limpar os 2
   commits locais antes que o auto-sync os empurre.
+
+### Rotação de chave (2026-09-23) — a chave antiga foi revogada
+- A 1ª chave hardcoded passou a devolver **`401 {"message":"User not found"}`** em toda
+  chamada (login e web) — sintoma clássico de **chave revogada** pelo OpenRouter (bate com o
+  vazamento acima: a chave versionada foi detectada/derrubada).
+- **Corrigido:** usuário gerou nova chave e substituímos `_HARDCODED_API_KEY` em
+  `kemy_config.py` (linha ~26). Teste direto no endpoint retornou **HTTP 200** — voltou a
+  funcionar. A chave nova continua hardcoded (gitignored), então **o risco de re-revogação
+  persiste** se ela vazar; recomendação em aberto: mover para `.env` (não versionado).
 
 ## Motor de inferência (API)
 
